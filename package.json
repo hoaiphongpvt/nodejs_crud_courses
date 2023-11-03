@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
+    "beautiful": "lint-staged",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --inspect src/index.js",
     "watch": "node-sass --watch src/resources/scss/ -o src/public/css/"
@@ -21,9 +22,15 @@
     "url": "https://github.com/hoaiphongpvt/nodejs_blog/issues"
   },
   "homepage": "https://github.com/hoaiphongpvt/nodejs_blog#readme",
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": "prettier --write --single-quote --tab-width 4 --trailing-comma all"
+  },
   "dependencies": {
     "express": "^4.18.2",
-    "express-handlebars": "^5.3.3"
+    "express-handlebars": "^5.3.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.0.2",
+    "prettier": "^3.0.3"
   },
   "devDependencies": {
     "morgan": "^1.10.0",
