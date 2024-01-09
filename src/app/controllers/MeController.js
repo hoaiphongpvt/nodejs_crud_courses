@@ -2,21 +2,17 @@ const { json } = require('express')
 const Course = require('../models/Course')
 const { mutipleMongooseToObject } = require('../../util/mongooes')
 
-class SiteController {
+class MeController {
     // [GET] /
-    index(req, res, next) {
+    mycourses(req, res, next) {
         Course.find({})
             .then((course) => {
-                res.render('home', {
+                res.render('courses/mycourses', {
                     course: mutipleMongooseToObject(course),
                 })
             })
             .catch((error) => next(error))
     }
-
-    search(req, res) {
-        res.render('search')
-    }
 }
 
-module.exports = new SiteController()
+module.exports = new MeController()

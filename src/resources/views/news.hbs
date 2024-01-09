@@ -1,1 +1,1 @@
-<h1>NEWS</h1>
+<h1>NEWS PAGE</h1>

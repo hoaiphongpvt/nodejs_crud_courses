@@ -1,0 +1,76 @@
+<div class='mt-2'>
+    <h3>My Courses</h3>
+    <table class='table'>
+        <thead>
+            <tr>
+                <th scope='col'>ID</th>
+                <th scope='col'>Name</th>
+                <th scope='col'>Description</th>
+                <th scope='col'>ULR Image</th>
+                <th scope='col'>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each course}}
+                <tr>
+                    <th scope='row'>{{sum @index 1}}</th>
+                    <td>{{this.name}}</td>
+                    <td>{{this.desc}}</td>
+                    <td>{{this.thumbnail}}</td>
+                    <td>
+                        <div class='row'>
+                            <a
+                                href='/courses/edit/{{this.slug}}'
+                                class='btn btn-primary btn-sm'
+                            >Update</a>
+                            <button
+                                href=''
+                                class='btn btn-danger btn-sm mt-1 btnDelete'
+                                data-toggle='modal'
+                                data-target='#delete-course-modal'
+                                data-id='{{this._id}}'
+                            >Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div
+    class='modal'
+    id='delete-course-modal'
+    tabindex='-1'
+    role='dialog'
+    aria-labelledby='exampleModalLabel'
+    aria-hidden='true'
+>
+    <div class='modal-dialog' role='document'>
+        <div class='modal-content'>
+            <div class='modal-header'>
+                <h5 class='modal-title' id='exampleModalLabel'>Xóa khóa học?</h5>
+            </div>
+            <div class='modal-body'>
+                Bạn có chắn chắn muốn xóa khóa học này không ?
+            </div>
+            <div class='modal-footer'>
+                <form action='/courses/delete?_method=DELETE' method='POST'>
+                    <input type='hidden' name='id' id='idCourse' />
+                    <button
+                        id='btnAccept'
+                        type='submit'
+                        class='btn btn-danger'
+                    >Xóa</button>
+                </form>
+                <button
+                    type='button'
+                    class='btn btn-secondary'
+                    data-dismiss='modal'
+                    id='btnCancel'
+                >Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>

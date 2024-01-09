@@ -1,1 +1,22 @@
-<h1>HOME PAGE</h1>
+<ul class='list row'>
+    {{#each course}}
+        <div class='card' style='width: 18rem;'>
+            <a href='/courses/{{this.slug}}'>
+                <img
+                    class='card-img-top'
+                    src={{this.thumbnail}}
+                    alt='Card image cap'
+                />
+            </a>
+            <div class='card-body'>
+                <a href='/courses/{{this.slug}}'>
+                    <h5 class='card-title'>{{this.name}}</h5>
+
+                </a>
+                <p class='card-text'>{{desc}}</p>
+                <a href='/courses/{{this.slug}}' class='btn btn-primary'>Go
+                    somewhere</a>
+            </div>
+        </div>
+    {{/each}}
+</ul>

@@ -1,0 +1,14 @@
+<div class='mt-4'>
+    <div class='row'>
+        {{#with course}}
+            <div class='col-6'>
+                <h1>{{name}}</h1>
+                <p>{{desc}}</p>
+            </div>
+            <div class='col-3'>
+                <img src={{thumbnail}} alt={{name}} />
+                <button>Đăng kí học</button>
+            </div>
+        {{/with}}
+    </div>
+</div>
