@@ -13,6 +13,16 @@ class MeController {
             })
             .catch((error) => next(error))
     }
+
+    trashCourses(req, res, next) {
+        Course.findWithDeleted({ deleted: true })
+            .then((courses) => {
+                res.render('courses/trashCourses', {
+                    courses: mutipleMongooseToObject(courses),
+                })
+            })
+            .catch((error) => next(error))
+    }
 }
 
 module.exports = new MeController()
