@@ -1,14 +1,32 @@
-<div class='mt-3'>
+<form class='mt-3' method='POST' action='/courses/handle-form-actions'>
     <div class='d-flex justify-content-between'>
         <h3>My Courses</h3>
         <a href='/me/trash' class='btn btn-danger'>Recycle Bin
-                    <span class='badge badge-light'> {{deletedCount}} </span>
-            </span>
+            <span class='badge badge-light'> {{deletedCount}} </span>
         </a>
+    </div>
+    <div class='mt-2 d-flex align-items-center gap-2'>
+        <div class='form-check'>
+            <input
+                class='form-check-input'
+                type='checkbox'
+                value=''
+                id='selectAll'
+            />
+            <label class='form-check-label' for='defaultCheck1'>
+                Select All
+            </label>
+        </div>
+        <select class='form-select form-select-sm w-25' name='action' required>
+            <option value=''>-- Select Action --</option>
+            <option value='delete'>Delete</option>
+        </select>
+        <button id='btnApply' class='btn btn-primary disabled'>Apply</button>
     </div>
     <table class='table'>
         <thead>
             <tr>
+                <th>#</th>
                 <th scope='col'>ID</th>
                 <th scope='col'>Name</th>
                 <th scope='col'>Description</th>
@@ -19,6 +37,14 @@
         <tbody>
             {{#each course}}
                 <tr>
+                    <th>
+                        <input
+                            class='form-check-input checkbox-item'
+                            type='checkbox'
+                            value={{this._id}}
+                            name='courseIDs[]'
+                        />
+                    </th>
                     <th scope='row'>{{sum @index 1}}</th>
                     <td>{{this.name}}</td>
                     <td>{{this.desc}}</td>
@@ -49,7 +75,7 @@
             {{/each}}
         </tbody>
     </table>
-</div>
+</form>
 
 <!-- Modal -->
 <div

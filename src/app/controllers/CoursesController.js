@@ -85,6 +85,27 @@ class CoursesController {
             })
             .catch((err) => {})
     }
+
+    handleFormAction(req, res, next) {
+        switch (req.body.action) {
+            case 'delete':
+                Course.delete({ _id: { $in: req.body.courseIDs } })
+                    .then(() => {
+                        res.redirect('back')
+                    })
+                    .catch(next)
+                break
+            case 'restore':
+                Course.restore({ _id: { $in: req.body.courseIDs } })
+                    .then(() => {
+                        res.redirect('back')
+                    })
+                    .catch(next)
+                break
+            default:
+                res.json({ status: 'Action not allowed' })
+        }
+    }
 }
 
 module.exports = new CoursesController()
