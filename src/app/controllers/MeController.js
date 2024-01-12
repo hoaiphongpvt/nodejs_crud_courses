@@ -4,9 +4,18 @@ const { mutipleMongooseToObject } = require('../../util/mongooes')
 
 class MeController {
     // [GET] /
+
     mycourses(req, res, next) {
+        let coursesQuery = Course.find({})
+
+        if (res.locals._sort.enable) {
+            coursesQuery = coursesQuery.sort({
+                [res.locals._sort.column]: res.locals._sort.type,
+            })
+        }
+
         Promise.all([
-            Course.find({}),
+            coursesQuery,
             Course.countDocumentsWithDeleted({ deleted: true }),
         ])
             .then(([course, deletedCount]) => {
