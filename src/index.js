@@ -5,6 +5,7 @@ const path = require('path')
 const route = require('./routes')
 const methodOverride = require('method-override')
 const SortMiddleware = require('./app/middlewares/SortMiddleware')
+const UploadFileMiddleware = require('./app/middlewares/UpLoadFileMiddleware')
 
 const app = express()
 const db = require('./config/db')
@@ -23,6 +24,7 @@ app.use(methodOverride('_method'))
 
 //Custom Middleware
 app.use(SortMiddleware)
+app.use(UploadFileMiddleware)
 
 app.engine(
     'hbs',

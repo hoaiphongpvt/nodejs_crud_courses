@@ -76,7 +76,11 @@ class CoursesController {
     }
 
     store(req, res, next) {
-        const course = new Course(req.body)
+        const course = new Course({
+            name: req.body.name,
+            desc: req.body.desc,
+            thumbnail: res.locals._upload.urlthumbnail,
+        })
         course
             .save()
             .then(() => {
